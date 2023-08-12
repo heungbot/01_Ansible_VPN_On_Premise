@@ -29,3 +29,6 @@
 ## [ 다이어 그램 ]
 <img width="1339" alt="ansible_diagram_real" src="https://github.com/heungbot/01_s2sVpn_Ansible/assets/97264115/1c24c38e-cb04-4392-872d-f00e74b30a94">
 
+### [ 핵심 서비스 ]
+
+
