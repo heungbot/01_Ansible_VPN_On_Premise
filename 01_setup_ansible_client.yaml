@@ -1,0 +1,70 @@
+# ansible server & client(on_premise) : ansadmin user
+# => 미친 사이트 : https://tekneed.com/using-the-ansible-user-module-to-create-manage-users/
+# check ansible server's inventory file(/etc/ansible/hosts - CIDR로 등록)
+
+# 1. setup on_premise server's ansible and ssh config(add user "ansadmin" and setup sshd.config) - 이를 bash script로 하나의 파일로 표현
+# 2. ssh-copy-id command to register ansible server
+# 3. run ansible addhook command to test connection
+# 4. run playbook to client
+---
+- name: ansible client setup
+  hosts: on_premise
+  become: true
+
+  vars_files: 
+    - vars/aws_backup_vars.yml # ansible-vault create file
+  
+  # task list
+  tasks:
+    - name: ansadmin user create
+      user:
+        name: "{{ TARGET_USER }}"
+        password: "{{ NEW_PASSWORD | password_hash('sha512') }}"
+        append: yes # whether or not to append the user to group
+        groups: wheel
+        state: "present"
+        shell: "/bin/bash"
+        
+        system: false # system account
+        create_home: true
+        home: "/home/{{ TARGET_USER }}"
+        comment: "Ansible client user"
+        generate_ssh_key: true
+        ssh_key_file: .ssh/id_rsa
+
+    - name: check key file exists
+      file:
+        path: "/home/{{ TARGET_USER }}/.ssh"
+        state: directory
+        mode: "0700"
+
+    - name: create ansadmin sudoer's file
+      file: 
+        path: "/etc/sudoers.d/{{ TARGET_USER }}"
+        state: touch
+    
+    - name: configure a pass-wordless authentication & execution for ansible client account
+      lineinfile:
+        path: "/etc/sudoers.d/{{ TARGET_USER }}"
+        line: "{{ TARGET_USER }} ALL=(ALL) NOPASSWD: ALL"
+        state: present
+
+    - name: install the control node's ssh public key on managed host # check the authorized_key file in managed ansible_client & known_hosts file in master ansible server
+      authorized_key:
+        user: "{{ TARGET_USER }}" # managed node's user name
+        state: present
+        key: "{{ lookup('file', '/home/{{ CONTROL_USER }}/.ssh/id_rsa.pub') }}" 
+
+    # ansible-playbook [THIS_FILE_NAME] --syntax-check
+    # ansible-playbook [THIS_FILE_NAME] --ask-vault-password -vvv
+
+    # - name: install aws cli
+    #   command: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
+
+    #   # aws cli 구성
+    #   # aws configure : 최소한의 권한을 가진. 즉, s3 backup 권한만 가진 IAM USER 등록
+    #   # s3 cp or sync command
+
+    # ssh [userName]@[IP] command를 통해 ssh 연결을 잘 성공하는 상황이었는데, ansible-playbook 명령은 UNREACHABLE Erorr를 야기시킴.
+    # -> remote user를 찾지 못하여 발생한 문제인듯 함.
+    # -> /etc/hosts file을 수정하니 playbook 정상작동 함.

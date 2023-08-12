@@ -1,0 +1,12 @@
+TARGET_SRC: /app/data
+BACKUP_DEST: /backup/app
+BACKUP_FILE_NAME: "heungbot_on_premise_{{ ansible_hostname }}.tar.gz" # 여기에 on_premise 들의 고유값을 추가하고 싶음.
+BUCKET_NAME: heungbot-db-snapshot-demo
+BUCKET_URL: "s3://{{ BUCKET_NAME }}/on-premise-data/"
+AWS_ROLE_ARN: arn:aws:iam::268758945012:role/on_premise_s3_role
+ROLE_SESSION_NAME: heungbot_session
+CONTROL_USER: ansadmin
+TARGET_USER: ansadmin_client
+NEW_PASSWORD: heungbot2143
+AWS_ACCESS_KEY_ID: AKIAT5E2IBT2PRBXTOWW
+AWS_SECRET_ACCESS_KEY: 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

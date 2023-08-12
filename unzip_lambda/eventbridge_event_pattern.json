@@ -1,0 +1,13 @@
+{
+    "source": ["aws.s3"],
+    "detail-type": ["Object Created"],
+    "detail": {
+      "bucket": {
+        "name": ["heungbot-rds-snapshot-demo"]
+      },
+      "key": {
+        "suffix": [".gz"],
+        "prefix": ["dynamodb/AWSDynamoDB"]
+      }
+    }
+  }

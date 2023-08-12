@@ -1,0 +1,38 @@
+---
+- name: backup direcotry to s3 bucket by using aws cli
+  hosts: on_premise
+  become: true # root permission(owner & own group = root)
+  vars_files: 
+    - vars/aws_backup_vars.yml # ansible-vault create command를 통해 암호화된 vars.yml 파일 만들자
+
+  tasks:
+    - name: Compress target direcotry
+      archive:
+        path: "{{ TARGET_SRC }}" # /app/data
+        dest: "{{ BACKUP_DEST }}/{{ BACKUP_FILE_NAME }}" # /backup/app/heungbot_on_premise_{{ ansible_hostname }}.tar.gz
+        format: gz
+        force_archive: true
+        # heungbot_on_premise_idc_private.tar.gz file 잘 생성됨.
+
+    - name: Configure AWS credentials
+      command: aws configure set aws_access_key_id {{ AWS_ACCESS_KEY_ID }}
+      register: bucket_user_access_id
+
+    - name: Configure AWS secret key
+      command: aws configure set aws_secret_access_key {{ AWS_SECRET_ACCESS_KEY }}
+      register: bucket_user_secret_key
+
+    - name: Configure AWS region
+      command: aws configure set region {{ AWS_REGION }} 
+      # aws config 잘 구성 됨(become: true 때문에 root 계정에 config 등록됨)
+
+    # - community.aws.sts_assume_role: # aws module install 필요 -> python >= 3.6 && boto3 >= 1.22.0 && botocore >= 1.25.0
+    #     role_arn: "{{ AWS_ROLE_ARN }}"
+    #     role_session: "{{ ROLE_SESSION }}"
+    #   register: bucket_role
+
+    - name: backup to s3 bucket
+      command: "aws s3 sync {{ BACKUP_DEST }} {{ BUCKET_URL }}"
+
+    # ansible-playbook [THIS_FILE_NAME] --syntax-check
+    # ansible-playbook [THIS_FILE_NAME] --ask-vault-password -vvv

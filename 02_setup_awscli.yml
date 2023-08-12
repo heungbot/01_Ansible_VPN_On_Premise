@@ -1,0 +1,38 @@
+---
+- name: aws cli setup
+  hosts: on_premise
+  remote_user: ansadmin_client
+  become: true
+
+  tasks:
+    - name: awscli.zip file download
+      get_url:
+        url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+        dest: "/tmp/awscliv2.zip"
+
+    - name: unzip
+      unarchive:
+        src: "/tmp/awscliv2.zip"
+        dest: "/tmp/awscliv2"
+        remote_src: yes
+
+    - name: install aws cli at /usr/local/bin 
+      shell: ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
+      args:
+        chdir: /tmp/awscliv2
+
+    - name: test aws cli
+      command: aws --version
+
+    - name: clean tmp direcotry
+      file:
+        path: "/tmp/awscliv2"
+        state: absent
+
+    - name: remove zip file
+      file:
+        path: "/tmp/awscliv2.zip"
+        state: absent
+
+    # ansible-playbook [THIS_FILE_NAME] --syntax-check
+    # ansible-playbook [THIS_FILE_NAME] --ask-vault-password -vvv
