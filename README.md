@@ -28,11 +28,15 @@
 
 * 회사 내부 관계자만 접속 가능하도록 보안조치 요망
 
-## [ 구축 상황 ]
-* 실제 On premise 서버가 존재하지 않으므로, 가상의 on_premise server 들을 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
-
 ## [ 다이어 그램 ]
+
 <img width="1339" alt="ansible_diagram_real" src="https://github.com/heungbot/01_s2sVpn_Ansible/assets/97264115/1c24c38e-cb04-4392-872d-f00e74b30a94">
+
+## [ 구축 상황 ]
+* 실제 On premise 서버가 존재하지 않으므로, 가상의 IDC를 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
+* 실제 구현 다이어 그램
+<img width="1372" alt="on_premise_ansible_local_diagram" src="https://github.com/heungbot/01_s2sVpn_Ansible/assets/97264115/eb77403a-c942-4678-93ee-d500b7ddb896">
+
 
 ### [ 핵심 서비스 ]
 
