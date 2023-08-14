@@ -30,14 +30,14 @@
 
 ## [ 다이어 그램 ]
 
-<img width="1248" alt="스크린샷 2023-08-14 오후 7 31 11" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/2a46a319-e717-4a4b-b83c-0222d75a04a1">
+<img width="1272" alt="스크린샷 2023-08-14 오후 7 36 55" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/290835fc-4edf-4e21-ad0a-6ff208ff28ec">
 
 ## [ 구축 상황 ]
 * 실제 On premise 서버가 존재하지 않으므로, 가상의 IDC를 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
 
 * 실제 구현 다이어 그램
   
-<img width="1362" alt="스크린샷 2023-08-14 오후 7 32 03" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/5691787d-1a77-42b8-bfeb-210db683aae1">
+<img width="1361" alt="스크린샷 2023-08-14 오후 7 35 41" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/628b0d69-e055-48de-b68c-f88d343a5247">
 
 
 ## [ 핵심 기술 ]
