@@ -51,12 +51,15 @@
 - 10초 동안 트래픽이 오가지 않을 경우 터널은 down됨.
 - BGP Routing Protocol을 사용하여 Network 경로를 자동으로 탐색할 수 있는 Dynamic Routing과 관리자가 직접 Network 경로를 설정하는 Static Routing이 존재함.
 
-  ### 02 Ansible
+  ### 02 Ansible Server
 
+<img width="595" alt="스크린샷 2023-08-14 오후 7 42 06" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bf40b526-ab36-406e-a12d-2948a7d3c9b6">
 
-
-- SSH 기반
-- 
+- 오픈 소스로서, 여러 개의 서버를 효율적으로 관리하기 위한 환경 구성 자동화 툴
+- 자동화 대상에 연결 후, 명령을 실행하는 프로그램을 푸시하는 방식으로 작동. 이 프로그램은 SSH를 기반으로 실행되는 Ansible Module을 활용
+- 자동화 task는 Playbook이라 불리는 청사진을 통해 정의됨. 이는 각 작업의 목록과 단계를 기술하며 서버의 상태를 원하는 대로 변경 및 관리 가능 
+- 자동화 대상의 목록 또는 그룹을 지정한 inventory 파일을 통해 서버 식별 가능
+- 동일 playbook을 몇 번이고 실행해도 같은 결과값을 얻을 수 있는 "멱등성"의 성질을 가지고 있음
 
 ## [ VPN 구성 ]
 
