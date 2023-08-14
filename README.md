@@ -30,8 +30,7 @@
 
 ## [ 다이어 그램 ]
 
-<img width="1191" alt="ansible_onpremise_real_diagram" src="https://github.com/heungbot/01_s2sVpn_Ansible/assets/97264115/51ed374a-658e-4348-bc69-25aab0d0de41">
-
+<img width="1194" alt="스크린샷 2023-08-14 오후 7 12 59" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/feed909a-282a-47ec-bfaa-6d19d219de3a">
 
 ## [ 구축 상황 ]
 * 실제 On premise 서버가 존재하지 않으므로, 가상의 IDC를 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
@@ -39,14 +38,18 @@
 * 실제 구현 다이어 그램
   
 <img width="1372" alt="on_premise_ansible_local_diagram" src="https://github.com/heungbot/01_s2sVpn_Ansible/assets/97264115/eb77403a-c942-4678-93ee-d500b7ddb896">
+- VPC(Cloud)에 Virtual Private Gateway, Client(IDC)
 
 
 ## [ 핵심 서비스 ]
+* Site To Site VPN 
+<img width="519" alt="스크린샷 2023-08-14 오후 6 52 09" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/413553ff-e73d-419f-bc8e-267af9234f46">
+- 두 개의 network domain이 가상의 사설 네트워크 연결을 사용하여 private 통신을 가능케 하는 AWS Managed Service.
+
 
 ## [ VPN 구성 ]
 
 ## [ Ansible Playbook 실행 과정 ]
-
 
 ### - 01. Ansbile Vault 생성 명령어
 - ansible playbook 실행에 필요한 변수들을 vault를 통해 보호
