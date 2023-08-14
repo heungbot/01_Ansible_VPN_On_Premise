@@ -109,3 +109,5 @@
 #### - 05-3. s3 bucket 확인
 
 <img width="1334" alt="03_ansible_playbook_result_final" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9782afa2-4947-4821-b395-68c4a5a033fc">
+
+- 압축된 파일이 s3 bucket으로 잘 가져와짐을 확인
