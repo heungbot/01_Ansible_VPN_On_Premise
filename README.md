@@ -79,7 +79,7 @@
 <img width="717" alt="02_app_data" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/51760c1c-fa20-40b8-bcb6-f3d0bbe6f4a4">
 
 
-##### 04-2. playbook 실행
+##### 05-2. playbook 실행
 
 <img width="815" alt="02_ansible_playbook_02_result_s3_sync" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/323138ec-3b8b-4783-b300-567a1a3f188b">
 
@@ -89,7 +89,7 @@
 - .tar.gz format으로 idc 서버에 압축된 것을 확인할 수 있음
 
 
-##### 04-3. s3 bucket 확인
+##### 05-3. s3 bucket 확인
 
 <img width="1334" alt="03_ansible_playbook_result_final" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9782afa2-4947-4821-b395-68c4a5a033fc">
 
