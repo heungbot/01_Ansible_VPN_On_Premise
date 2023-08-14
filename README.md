@@ -79,7 +79,7 @@
 
 
 
-### - 03. Ansible Client user 생성 playbook 실행
+### - 03. Ansible Client User 생성 playbook 실행
 - ansible 관련 작업을 진행할 때, 하나의 user를 사용함으로써 권한이슈 및 관리의 효율성을 챙기기 위해
 
 <img width="817" alt="01_ansible_playbook_result" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/72359d3d-4b93-4423-aa5e-68ebb1d607e4">
@@ -89,7 +89,7 @@
 ### - 04. Aws clie download playbook
 - IDC 대상으로 한 playbook이지만, 구현 시 AWS EC2 Instance를 IDC로 구성했기 때문에 기본적으로 aws cli가 다운로드 되어 있으므로 생략
 
-### - 05. aws cli test playbook
+### - 05. Aws Cli Test Playbook
 
 #### - 05-1. 임의의 파일 생성
 
