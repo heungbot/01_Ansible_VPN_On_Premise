@@ -41,8 +41,8 @@
 - VPC(Cloud)에 Virtual Private Gateway, Client(IDC)
 
 
-## [ 핵심 서비스 ]
-### Site To Site VPN 
+## [ 핵심 기술 ]
+### 01 Site To Site VPN 
 
 <img width="627" alt="스크린샷 2023-08-14 오후 7 15 23" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bc46560d-1a81-4ef7-9576-cac9e79748f4">
 
@@ -51,6 +51,13 @@
 - VPC에 부착할 Virtual Private Gateway 또는 Transit Gateway와 On Premise에 연결할 Customer Gateway 사이에 두개의 VPN 터널을 생성함
 - 10초 동안 트래픽이 오가지 않을 경우 터널은 down됨.
 - BGP Routing Protocol을 사용하여 Network 경로를 자동으로 탐색할 수 있는 Dynamic Routing과 관리자가 직접 Network 경로를 설정하는 Static Routing이 존재함.
+
+  ### 02 Ansible
+
+![image](https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/769ceaa7-e5cf-4246-bf5c-6d4fcfbd394e)
+
+- SSH 기반
+- 
 
 ## [ VPN 구성 ]
 
