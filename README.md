@@ -1,6 +1,6 @@
 # 01 Ansible Playbook to On Premise Servers by using S2S VPN
 
-## [ 프로젝트 설명 ]
+## [ 01 프로젝트 설명 ]
 프로젝트 명 : S2S VPN을 이용한 On premise Ansbile 구성
 
 프로젝트 인원 : 1명
@@ -9,7 +9,7 @@
 
 프로젝트 소개 : 이 프로젝트는 일부 물리 서버를 임대하여 운영 중인 상황에서 원격 접속이 불가능한 문제를 해결하기 위한 목적으로 시작되었습니다. 이를 위해 적절한 AWS 서비스를 활용하고 Terraform을 이용하여 인프라를 구축하고 관리하는 것이 목표입니다.
 
-## [ 클라이언트 상황 ]
+## [ 02 클라이언트 상황 ]
 
 * IDC 중 일부를 임대하여 사용하기에 회사와 먼 거리에 위치
 
@@ -19,7 +19,7 @@
 
 * 추 후 발생할 다양한 이벤트로 인해 기존에 운영중인 AWS와 IDC를 연동하기로 결정
 
-## [ 요구사항 ]
+## [ 03 요구사항 ]
 * 암호화된 원격 연결을 통한 네트워크 보안 확보
 
 * 반복 작업의 지양
@@ -28,11 +28,11 @@
 
 * 회사 내부 관계자만 접속 가능하도록 보안조치 요망
 
-## [ 다이어 그램 ]
+## [ 04 다이어 그램 ]
 
 <img width="1272" alt="스크린샷 2023-08-14 오후 7 36 55" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/290835fc-4edf-4e21-ad0a-6ff208ff28ec">
 
-## [ 구축 상황 ]
+## [ 05 구축 상황 ]
 * 실제 On premise 서버가 존재하지 않으므로, 가상의 IDC를 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
 
 * 실제 구현 다이어 그램
@@ -40,7 +40,7 @@
 <img width="1361" alt="스크린샷 2023-08-14 오후 7 35 41" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/628b0d69-e055-48de-b68c-f88d343a5247">
 
 
-## [ 핵심 기술 ]
+## [ 06 핵심 기술 ]
 ### 01 Site To Site VPN 
 
 <img width="627" alt="스크린샷 2023-08-14 오후 7 15 23" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bc46560d-1a81-4ef7-9576-cac9e79748f4">
@@ -61,9 +61,9 @@
 - 자동화 대상의 목록 또는 그룹을 지정한 inventory 파일을 통해 서버 식별 가능
 - 동일 playbook을 몇 번이고 실행해도 같은 결과값을 얻을 수 있는 "멱등성"의 성질을 가지고 있음
 
-## [ VPN 구성 ]
+## [ 07 VPN 구성 ]
 
-## [ Ansible Playbook 실행 과정 ]
+## [ 08 Ansible Playbook 실행 과정 ]
 
 ### - 01. Ansbile Vault 생성 명령어
 - ansible playbook 실행에 필요한 변수들을 vault를 통해 보호
@@ -109,11 +109,3 @@
 #### 05-3. s3 bucket 확인
 
 <img width="1334" alt="03_ansible_playbook_result_final" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9782afa2-4947-4821-b395-68c4a5a033fc">
-
-
-
-## [ VPN 구성 ]
-
-
-
-
