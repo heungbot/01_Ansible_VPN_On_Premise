@@ -80,7 +80,7 @@
 
 ## [ 08 Ansible Playbook 실행 과정 ]
 
-### 08-1 Ansbile Vault 생성 명령어
+#### 01 Ansbile Vault 생성 명령어
 - ansible playbook 실행에 필요한 변수들을 vault를 통해 보호
 
 <img width="576" alt="00_ansible_vault_create" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/6350f3c0-55a3-4d58-95af-8672f9c3c798">
