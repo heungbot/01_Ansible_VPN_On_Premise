@@ -51,7 +51,7 @@
 - 10초 동안 트래픽이 오가지 않을 경우 터널은 down됨.
 - BGP Routing Protocol을 사용하여 Network 경로를 자동으로 탐색할 수 있는 Dynamic Routing과 관리자가 직접 Network 경로를 설정하는 Static Routing이 존재함.
 
-  ### 02 Ansible Server
+### 02 Ansible Server
 
 <img width="595" alt="스크린샷 2023-08-14 오후 7 42 06" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bf40b526-ab36-406e-a12d-2948a7d3c9b6">
 
