@@ -87,32 +87,30 @@
 
 
 
-### 08-2 Ansible Playbook syntax check
+#### 02 Ansible Playbook syntax check
 - playbook 실행 전에 구성 문법 확인
 
 <img width="768" alt="00_ansible-playbook-syntax-check" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/12b20578-3b9b-4ccb-9867-39910277fe1f">
 
 
 
-### 08-3 Ansible Client User 생성 playbook 실행
+#### 03 Ansible Client User 생성 playbook 실행
 - ansible 관련 작업을 진행할 때, 하나의 user를 사용함으로써 권한이슈 및 관리의 효율성을 챙기기 위해
 
 <img width="817" alt="01_ansible_playbook_result" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/72359d3d-4b93-4423-aa5e-68ebb1d607e4">
 
 
 
-### 08-4 Aws clie download playbook
+#### 04 Aws cli download playbook
 - IDC 대상으로 한 playbook이지만, 구현 시 AWS EC2 Instance를 IDC로 구성했기 때문에 기본적으로 aws cli가 다운로드 되어 있으므로 생략
 
 
-### 08-5. Aws Cli Test Playbook
-
-#### 임의의 파일 생성
+#### 05 압축 테스트를 위한 임의의 파일 생성
 
 <img width="717" alt="02_app_data" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/51760c1c-fa20-40b8-bcb6-f3d0bbe6f4a4">
 
 
-#### playbook 실행
+#### 06 파일 압축 + S3 bucket Upload Playbook 실행
 
 <img width="815" alt="02_ansible_playbook_02_result_s3_sync" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/323138ec-3b8b-4783-b300-567a1a3f188b">
 
@@ -122,7 +120,7 @@
 - .tar.gz format으로 idc 서버에 압축된 것을 확인할 수 있음
 
 
-#### S3 bucket 확인
+#### 07 S3 bucket 확인
 
 <img width="1334" alt="03_ansible_playbook_result_final" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9782afa2-4947-4821-b395-68c4a5a033fc">
 
