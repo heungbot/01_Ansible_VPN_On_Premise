@@ -21,6 +21,8 @@
 
 * 추 후 발생할 다양한 이벤트로 인해 기존에 운영중인 AWS와 IDC를 연동하기로 결정
 
+***
+
 ## [ 03 요구사항 ]
 * 암호화된 원격 연결을 통한 네트워크 보안 확보
 
@@ -30,9 +32,13 @@
 
 * 회사 내부 관계자만 접속 가능하도록 보안조치 요망
 
+***
+
 ## [ 04 다이어 그램 ]
 
 <img width="1272" alt="스크린샷 2023-08-14 오후 7 36 55" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/290835fc-4edf-4e21-ad0a-6ff208ff28ec">
+
+***
 
 ## [ 05 구축 상황 ]
 * 실제 On premise 서버가 존재하지 않으므로, 가상의 IDC를 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
@@ -41,8 +47,11 @@
   
 <img width="1361" alt="스크린샷 2023-08-14 오후 7 35 41" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/628b0d69-e055-48de-b68c-f88d343a5247">
 
+***
 
 ## [ 06 핵심 기술 ]
+
+
 ### 01 Site To Site VPN 
 
 <img width="627" alt="스크린샷 2023-08-14 오후 7 15 23" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bc46560d-1a81-4ef7-9576-cac9e79748f4">
@@ -62,6 +71,8 @@
 - 자동화 task는 Playbook이라 불리는 청사진을 통해 정의됨. 이는 각 작업의 목록과 단계를 기술하며 서버의 상태를 원하는 대로 변경 및 관리 가능 
 - 자동화 대상의 목록 또는 그룹을 지정한 inventory 파일을 통해 서버 식별 가능
 - 동일 playbook을 몇 번이고 실행해도 같은 결과값을 얻을 수 있는 "멱등성"의 성질을 가지고 있음
+
+***
 
 ## [ 07 VPN 구성 ]
 
@@ -90,6 +101,8 @@
 
 ### - 04. Aws clie download playbook
 - IDC 대상으로 한 playbook이지만, 구현 시 AWS EC2 Instance를 IDC로 구성했기 때문에 기본적으로 aws cli가 다운로드 되어 있으므로 생략
+
+***
 
 ### - 05. Aws Cli Test Playbook
 
