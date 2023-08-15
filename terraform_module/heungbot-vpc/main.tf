@@ -1,6 +1,3 @@
-# ECS Task가 target group으로 등록되지 않는 문제 발생
-# + terraform code 이름 수정
-
 # VPC
 resource "aws_vpc" "main" {
   cidr_block           = var.VPC_CIDR
