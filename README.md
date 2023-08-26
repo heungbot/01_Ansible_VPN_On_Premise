@@ -183,7 +183,9 @@ ping [IDC Private IP]
 ```
 
 <img width="505" alt="스크린샷 2023-08-26 오전 11 07 15" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/8dd8ba39-280a-452f-9500-0cf398b54b5d">
--> ping test 성공
+
+-> Private Server 간의 Ping Test 성공
+
 
 ***
 
