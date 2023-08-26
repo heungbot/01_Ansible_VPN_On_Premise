@@ -140,7 +140,8 @@ sysctl -p # 변경사항 확인
 
 
 #### 03 openswan VPN Configure
-* 이전에 다운 받았던 openswan config 파일을 이용하여 아래와 같이 구성
+* 이전에 다운 받았던 openswan config 파일을 이용하여 구성
+* 암호화 알고리즘의 변경으로 인해 아래 표와 같이 수정을 진행
 
 
 |수정 전|수정 후|
