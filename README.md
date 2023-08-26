@@ -79,9 +79,19 @@
 ### 07-1 VGW 생성
 <img width="582" alt="스크린샷 2023-08-26 오전 10 21 52" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/e479b42d-5944-452c-b570-f7ee52979c71">
 
+-> VGW 생성 완료 되었으면, VPC에 연결.
+
+<img width="689" alt="스크린샷 2023-08-26 오전 11 01 24" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/065122c8-9eef-4b6c-9584-a886647b7620">
+
+
+-> VPC의 라우팅 테이블에서 라우팅 전파 활성화
+
+<img width="482" alt="스크린샷 2023-08-26 오전 10 58 14" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/75a7a39f-18d2-468a-8f59-b0ea3fa50681">
+
+
+
 ### 07-2 CGW 생성
 <img width="580" alt="스크린샷 2023-08-26 오전 10 22 12" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/1dd80b8e-7b9f-4981-a571-c7545889387e">
-
 - IP주소에는 VPN 구성을할 IDC의 Public IP를 구성
 
 ### 07-3 VPN Connection 생성
@@ -92,12 +102,10 @@
 
 ### 07-4 Tunnel State 확인
 <img width="974" alt="스크린샷 2023-08-26 오전 10 24 16" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/58ef6846-a35e-4463-abc5-1eab20fc58d4">
-
 - 아직 IDC측의 VPN 구성이 모두 설정되지 않았기 때문에 State가 Down으로 나옴.
 
 ### 07-5 IDC VPN Config
 <img width="360" alt="스크린샷 2023-08-26 오전 10 25 49" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/04127278-77a6-4b8c-b343-638e39566f6f">
-
 - Open Swan 설정파일을 이용하여 IDC 측의 VPN 구성을 진행
 
 
@@ -125,6 +133,7 @@ sysctl -p # 변경사항 확인
 <img width="722" alt="set_sysctl_to_openswan" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/1cc87f75-a854-4214-bf18-172333210d9c">
 
 
+
 #### 03 openswan VPN Configure
 - 이전에 다운 받았던 openswan config 파일을 이용하여 아래와 같이 구성
 
@@ -138,9 +147,37 @@ sysctl -p # 변경사항 확인
 |auth=esp|#auth=esp|
 
 
-
-
 <img width="378" alt="etc_ipsec d_aws_conf" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/c039c5ef-54f8-4c5e-b210-5da6e1adb5ca">
+
+* /etc/ipsec.d 위치에 aws.secrets 파일 생성 && .txt 파일을 참조하여 VPN connection에 필요한 secret key 저장
+
+```
+vim /etc/ipsec.d/aws.secrets
+```
+<img width="539" alt="etc_ipsec d_aws_secrets" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9cb07c38-7b35-4e6b-81f7-c8020d54b520">
+
+-> 위 처럼 구성 완료 후, ipsec 서비스 재시작
+```
+systemctl restart ipsec
+```
+
+### 07-6 VPN 구성 확인 및 테스트
+
+<img width="1208" alt="tunnel_state_up" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/d30bda86-f227-447a-bfb5-ca81cd6f5951">
+
+-> 두 개의 tunnel이 up된 상태임을 확인
+```
+ipsec status | grep -i total # tunnel 확인
+netstat -nptul # 네트워크 구성 확인
+```
+<img width="745" alt="tunnel_open" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/811c51a9-3747-4c58-9060-a76e9ea814cf">
+
+```
+ping [IDC Private IP]
+```
+
+<img width="505" alt="스크린샷 2023-08-26 오전 11 07 15" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/8dd8ba39-280a-452f-9500-0cf398b54b5d">
+-> ping test 성공
 
 ***
 
