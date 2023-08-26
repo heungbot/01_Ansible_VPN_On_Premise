@@ -76,35 +76,38 @@
 
 ## [ 07 VPN 서버 구성 ]
 
-### 01 VGW 생성
+### 07-1 VGW 생성
 <img width="582" alt="스크린샷 2023-08-26 오전 10 21 52" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/e479b42d-5944-452c-b570-f7ee52979c71">
 
-### 02 CGW 생성
+### 07-2 CGW 생성
 <img width="580" alt="스크린샷 2023-08-26 오전 10 22 12" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/1dd80b8e-7b9f-4981-a571-c7545889387e">
+
 - IP주소에는 VPN 구성을할 IDC의 Public IP를 구성
 
-### 03 VPN Connection 생성
+### 07-3 VPN Connection 생성
 <img width="378" alt="스크린샷 2023-08-26 오전 10 22 58" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9c28a4a5-b377-46eb-a233-e65fff876c4e">
 
 - 위에서 생성한 VGW, CGW를 이용하여 VPN Connection 생성
 - IP Prefix에는 통신하고자 하는 IDC의 Private CIDR을 입력
 
-### 04 Tunnel State 확인
+### 07-4 Tunnel State 확인
 <img width="974" alt="스크린샷 2023-08-26 오전 10 24 16" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/58ef6846-a35e-4463-abc5-1eab20fc58d4">
+
 - 아직 IDC측의 VPN 구성이 모두 설정되지 않았기 때문에 State가 Down으로 나옴.
 
-### 05 IDC VPN Config
+### 07-5 IDC VPN Config
 <img width="360" alt="스크린샷 2023-08-26 오전 10 25 49" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/04127278-77a6-4b8c-b343-638e39566f6f">
+
 - Open Swan 설정파일을 이용하여 IDC 측의 VPN 구성을 진행
 
 
-#### 05-1 openswan 설치 및 서비스 활성화
+#### 01 openswan 설치 및 서비스 활성화
 ```
 yum install -y openswan
 systemctl status ipsec && systemctl enable ipsec
 ```
 
-#### 05-2 Network setup 
+#### 02 Network setup 
 ``` 
 cat /etc/ipsec.conf | grep "include /etc/ipsec.d" 
 include /etc/ipsec.d/*.conf
@@ -122,7 +125,7 @@ sysctl -p # 변경사항 확인
 <img width="722" alt="set_sysctl_to_openswan" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/1cc87f75-a854-4214-bf18-172333210d9c">
 
 
-#### 05-3 openswan VPN Configure
+#### 03 openswan VPN Configure
 - 이전에 다운 받았던 openswan config 파일을 이용하여 아래와 같이 구성
 
 
@@ -133,6 +136,8 @@ sysctl -p # 변경사항 확인
 |phase2alg=aes128-sha1;modp1024|phase2alg=aes_gcm|
 |ike=aes128-sha1;modp1024|ike=aes256-sha1;modp1024|
 |auth=esp|#auth=esp|
+
+
 
 
 <img width="378" alt="etc_ipsec d_aws_conf" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/c039c5ef-54f8-4c5e-b210-5da6e1adb5ca">
