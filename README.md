@@ -17,7 +17,7 @@
 
 [07. 구현 과정 ](#-07-구현-과정-)
 
-[08. Ansible Playbook 실행 및 결과 ](#-08-ansible-playbook-실행-및-결과)
+[08. Ansible Playbook 실행 및 결과 ](#-08-ansible-playbook-실행-및-결과-)
 
 ***
 
