@@ -31,7 +31,7 @@
 
 *** 
 
-## [ 02 클라이언트 상황 가정 ]
+## [ 01 클라이언트 상황 가정 ]
 
 * IDC 중 일부를 임대하여 사용하기에 회사와 먼 거리에 위치
 
@@ -43,7 +43,7 @@
 
 ***
 
-## [ 03 요구사항 정의 ]
+## [ 02 요구사항 정의 ]
 * 암호화된 원격 연결을 통한 네트워크 보안 확보
 
 * 반복 작업의 지양
@@ -54,13 +54,13 @@
 
 ***
 
-## [ 04 다이어그램 ]
+## [ 03 다이어그램 ]
 
 <img width="1272" alt="스크린샷 2023-08-14 오후 7 36 55" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/290835fc-4edf-4e21-ad0a-6ff208ff28ec">
 
 ***
 
-## [ 05 구축 환경 ]
+## [ 04 구축 환경 ]
 * 실제 On premise 서버가 존재하지 않으므로, 가상의 IDC를 AWS Cloud 내에서 다른 Region(ap-northeast-1)으로 구축
 
 * 실제 구현 다이어 그램
@@ -69,10 +69,10 @@
 
 ***
 
-## [ 06 핵심 서비스 소개 ]
+## [ 05 핵심 서비스 소개 ]
 
 
-### 06-1 Site To Site VPN 
+### 05-1 Site To Site VPN 
 
 <img width="627" alt="스크린샷 2023-08-14 오후 7 15 23" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bc46560d-1a81-4ef7-9576-cac9e79748f4">
 
@@ -82,7 +82,7 @@
 - 10초 동안 트래픽이 오가지 않을 경우 터널은 down됨.
 - BGP Routing Protocol을 사용하여 Network 경로를 자동으로 탐색할 수 있는 Dynamic Routing과 관리자가 직접 Network 경로를 설정하는 Static Routing이 존재함.
 
-### 06-2 Ansible Server
+### 05-2 Ansible Server
 
 <img width="595" alt="스크린샷 2023-08-14 오후 7 42 06" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/bf40b526-ab36-406e-a12d-2948a7d3c9b6">
 
@@ -94,9 +94,9 @@
 
 ***
 
-## [ 07 구현 과정 ]
+## [ 06 구현 과정 ]
 
-### 07-1 VGW 생성
+### 06-1 VGW 생성
 <img width="582" alt="스크린샷 2023-08-26 오전 10 21 52" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/e479b42d-5944-452c-b570-f7ee52979c71">
 
 -> VGW 생성 완료 후 VPC에 연결.
@@ -112,23 +112,23 @@
 
 
 
-### 07-2 CGW 생성
+### 06-2 CGW 생성
 <img width="580" alt="스크린샷 2023-08-26 오전 10 22 12" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/1dd80b8e-7b9f-4981-a571-c7545889387e">
 
 * IP주소에는 VPN 구성을할 IDC의 Public IP를 구성
 
-### 07-3 VPN Connection 생성
+### 06-3 VPN Connection 생성
 <img width="378" alt="스크린샷 2023-08-26 오전 10 22 58" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/9c28a4a5-b377-46eb-a233-e65fff876c4e">
 
 * 위에서 생성한 VGW, CGW를 이용하여 VPN Connection 생성
 * IP Prefix에는 통신하고자 하는 IDC의 Private CIDR을 입력
 
-### 07-4 Tunnel State 확인
+### 06-4 Tunnel State 확인
 <img width="974" alt="스크린샷 2023-08-26 오전 10 24 16" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/58ef6846-a35e-4463-abc5-1eab20fc58d4">
 
 * 아직 IDC측의 VPN 구성이 모두 설정되지 않았기 때문에 State가 Down으로 나옴.
 
-### 07-5 IDC VPN Config
+### 06-5 IDC VPN Config
 <img width="360" alt="스크린샷 2023-08-26 오전 10 25 49" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/04127278-77a6-4b8c-b343-638e39566f6f">
 
 * OpenSwan 설정파일을 이용하여 IDC 측의 VPN 구성을 진행
@@ -187,7 +187,7 @@ vim /etc/ipsec.d/aws.secrets
 systemctl restart ipsec
 ```
 
-### 07-6 VPN 구성 확인 및 테스트
+### 06-6 VPN 구성 확인 및 테스트
 
 <img width="1208" alt="tunnel_state_up" src="https://github.com/heungbot/01_Ansible_VPN_On_Premise/assets/97264115/d30bda86-f227-447a-bfb5-ca81cd6f5951">
 
@@ -209,7 +209,7 @@ ping [IDC Private IP]
 
 ***
 
-## [ 08 Ansible Playbook 실행 및 결과 ]
+## [ 07 Ansible Playbook 실행 및 결과 ]
 
 #### 01 Ansbile Vault 생성 명령어
 - ansible playbook 실행에 필요한 변수들을 vault를 통해 보호
