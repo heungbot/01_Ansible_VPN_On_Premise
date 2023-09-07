@@ -3,7 +3,7 @@
 ***
 
 ## 📄 프로젝트 설명
-프로젝트 명 : S2S VPN을 이용한 On premise Ansbile 구성
+프로젝트 명 : S2S VPN과 Ansible을 이용한 IDC 작업 효율화
 
 프로젝트 인원 : 1명
 
